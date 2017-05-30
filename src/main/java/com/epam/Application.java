@@ -1,28 +1,28 @@
 package com.epam;
 
-import com.epam.cache.BestCache;
-import com.epam.cache.Cache;
+import com.epam.cache.CacheMonitor;
+import com.epam.cache.MonitoredCache;
 
 public class Application {
 
 	public static void main(String[] args) {
-		Cache<String> stringCache = new BestCache<String>();
-		use(stringCache);
-		monitor(stringCache);
-		winLottery(stringCache);
+		CacheMonitor<String> cache = new MonitoredCache<>();
+		use(cache);
+		monitor(cache);
+		winLottery(cache);
 	}
 
-	private static void monitor(Cache<String> stringCache) {
-		Monitor<String> stringCacheMonitor = new Monitor<String>(stringCache);
+	private static void monitor(CacheMonitor<String> cache) {
+		Monitor stringCacheMonitor = new Monitor(cache);
 		stringCacheMonitor.printInfo();
 	}
 
-	private static void use(Cache<String> stringCache) {
+	private static void use(CacheMonitor<String> stringCache) {
 		CacheUser cacheUser = new CacheUser(stringCache);
 		cacheUser.use();
 	}
 
-	private static void winLottery(Cache<String> stringCache) {
+	private static void winLottery(CacheMonitor stringCache) {
 		stringCache.callThisMethodToWinTheLottery();
 	}
 

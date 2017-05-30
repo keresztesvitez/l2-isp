@@ -1,21 +1,21 @@
 package com.epam;
 
-import com.epam.cache.Cache;
+import com.epam.cache.CacheMonitor;
 
-public class Monitor<T> {
+public class Monitor {
 
-	private Cache<T> cache;
+	private CacheMonitor cacheMonitor;
 
-	public Monitor(Cache<T> cache) {
-		this.cache = cache;
+	public Monitor(CacheMonitor cacheMonitor) {
+		this.cacheMonitor = cacheMonitor;
 	}
 	
 	public void printInfo() {
 		System.out.println("Cache info:");
-		for (String key : cache.getKeys()) {
-			System.out.println("Element: " + key);
-			System.out.println("Last access: " + cache.getLastAccess(key));
-			System.out.println("Number of hits: " + cache.getNumHits(key));
+		for (Object key : cacheMonitor.getKeys()) {
+			System.out.println("Element: " + String.valueOf(key));
+			System.out.println("Last access: " + cacheMonitor.getLastAccess(String.valueOf(key)));
+			System.out.println("Number of hits: " + cacheMonitor.getNumHits(String.valueOf(key)));
 		}
 	}
 	
